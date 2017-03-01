@@ -43,13 +43,9 @@
         </h1>
         <div class="ui attached center aligned segment">
             <p>
-                Just-install customizer allows you to create a unattended and automated installer to install applications. Choose the apps
+                Just-install customizer allows you to create a unattended and automated installer to install your apps. Choose the apps
                 you would like to install, and click Download Installer. The installer will always remain up to date, and
                 it will start installing the programs automatically when you open it.
-            </p>
-
-            <p>
-                This tool works on IE 11+, Firefox 20+, Chrome, and Edge.
             </p>
 
             <div class="ui section divider"></div>
@@ -64,7 +60,9 @@
             </div>
         </div>
         <div class="ui bottom center aligned attached segment">
-            Made by <a href="//github.com/geek1011">geek1011</a>
+            <p>
+                This tool only works on IE 11+, Firefox 20+, Chrome, and Edge.
+            </p>
         </div>
     </div>
 
@@ -100,7 +98,7 @@
             url: justInstallUrl,
             type: 'HEAD',
             error: function() {
-                showError("Fatal Error", "The file just-install.exe does not exist in the same folder as this webpage. For this tool to work, please place just-install.exe in " + window.location.toString().substring(0, window.location.toString().lastIndexOf("/")) + "/ and reload this page.", true)
+                showError("Fatal Error", "The file " + justInstallUrl + " is not accessible. For this tool to work, please create just-install.exe at the URL " + justInstallUrl + " and reload this page.", true)
             },
             success: function() {
                 $.ajax("//rawgit.com/just-install/registry/master/just-install.json").done(function (res) {
