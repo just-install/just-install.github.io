@@ -189,7 +189,7 @@
              $scope.packages = null;
              $scope.registryVersion = -1;
 
-             $http.get('https://rawgit.com/just-install/registry/master/just-install.json').success(function (data) {
+             $http.get('//just-install.github.io/registry/just-install-v4.json').success(function (data) {
                  $scope.registryVersion = data.version;
                  $scope.packages = Object.keys(data.packages).map(function (v) {
                      return {
