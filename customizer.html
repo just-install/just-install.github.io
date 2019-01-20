@@ -101,7 +101,7 @@
                 showError("Fatal Error", "The file " + justInstallUrl + " is not accessible. For this tool to work, please create just-install.exe at the URL " + justInstallUrl + " and reload this page.", true)
             },
             success: function() {
-                $.ajax("//rawgit.com/just-install/registry/master/just-install.json").done(function (res) {
+                $.ajax("//just-install.github.io/registry/just-install-v4.json").done(function (res) {
                     $.each(res.packages, function (pkgname, pkginfo) {
                         $(".ui.apps.dropdown").append('<option value="' + pkgname + '">' + pkgname + '</option>');
                     });
