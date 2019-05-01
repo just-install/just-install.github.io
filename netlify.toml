@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "/*"
-  to = "https://just-install.github.io/:splat"
-  status = 301
-  force = true
