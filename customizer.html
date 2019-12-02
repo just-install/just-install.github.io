@@ -364,7 +364,7 @@
                 },
             },
             mounted() {
-                fetch("https://cors.geek1011.net/just-install.github.io/registry/just-install-v4.json").then(resp => resp.json()).then(registry => {
+                fetch("https://just-install.github.io/registry/just-install-v4.json").then(resp => resp.json()).then(registry => {
                     this.registry = registry
                     this.selections = window.location.hash.replace("#", "").split(",").filter(pkgName => this.registry.packages[pkgName])
                 }).catch(err => {
