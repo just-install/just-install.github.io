@@ -167,9 +167,21 @@
         .apps__column__list__item:focus {
             outline: 2px solid #666;
         }
-        .apps__column__list__item__name {
+        .apps__column__list__item__header {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        .apps__column__list__item__header__name {
+            flex: 1;
             font-weight: 700;
             margin-bottom: 2px;
+        }
+        .apps__column__list__item__header__flags {
+            flex: 0 0 auto;
+            color: #f33;
+            font-size: 85%;
         }
         .apps__column__list__item__version {
             display: inline;
@@ -223,7 +235,12 @@
                     <div class="apps__column__letter">{{letter}}</div>
                     <div class="apps__column__list">
                         <a href="javascript:void(0);" class="apps__column__list__item" role="checkbox" v-for="pkg in pkgs" :key="pkg.name" @mouseDown="toggle(pkg.name)" @keyDown.space.prevent="toggle(pkg.name)" :class="{'apps__column__list__item--selected': selections.includes(pkg.name)}">
-                            <div class="apps__column__list__item__name">{{pkg.name}}</div>
+                            <div class="apps__column__list__item__header">
+                                <div class="apps__column__list__item__header__name">{{pkg.name}}</div>
+                                <div class="apps__column__list__item__header__flags">
+                                    <span v-if="pkg.installer.interactive" title="This installer requires user interaction">Interactive</span>
+                                </div>
+                            </div>
                             <div class="apps__column__list__item__version">{{pkg.version}}</div>
                             <div class="apps__column__list__item__archs">{{pkgArchs(pkg).join(", ")}}</div>
                         </a>
