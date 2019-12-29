@@ -216,7 +216,8 @@
             <div class="app__header__apps">
                 <span v-for="(pkg, i) in selections"><span v-if="i > 0">, </span><span href="javascript:void(0);" class="app__header__apps__app" @click="toggle(pkg)">{{pkg}}</span></span>
             </div>
-            <a href="javascript:void(0);" class="app__header__button" :title="selections.join(',')" :class="{'app__header__button--working': downloading}" @click="download">Download ({{selections.length}})</a>
+            <a :href="jiURL" class="app__header__button" v-if="selections.length == 0">Download (0)</a>
+            <a href="javascript:void(0);" class="app__header__button" :title="selections.join(',')" :class="{'app__header__button--working': downloading}" @click="download" v-else>Download ({{selections.length}})</a>
         </header>
         <nav class="app__nav" v-if="!error">
             <!--<div class="app__nav__tabs">
@@ -263,6 +264,7 @@
                 downloading: false,
                 error: null,
                 ji: null,
+                jiURL: "https://just-install.github.io/stable/just-install.exe",
             },
             computed: {
                 normalizedFilter() {
@@ -357,7 +359,7 @@
                     try {
                         this.downloading = true;
 
-                        const ji = this.ji ? Promise.resolve(this.ji) : fetch("https://just-install.github.io/stable/just-install.exe").then(resp => {
+                        const ji = this.ji ? Promise.resolve(this.ji) : fetch(this.jiURL).then(resp => {
                             if (resp.status != 200)
                                 throw new Error("Response status " + resp.statusText)
                             return resp.blob()
