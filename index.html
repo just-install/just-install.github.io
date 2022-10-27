@@ -39,7 +39,7 @@
              font-size: 5rem;
          }
 
-         h1, h2, h3 {
+         h1 {
              color: #EAC03C;
              font-family: 'Oswald', sans-serif;
          }
@@ -60,18 +60,6 @@
 
          p {
              color: white;
-         }
-
-         small {
-             font-size: 0.75rem;
-         }
-
-         table {
-             width: 100%;
-         }
-
-         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-             display: none !important;
          }
 
          .github-corner:hover .octo-arm{
@@ -102,10 +90,6 @@
              }
          }
 
-         .help-block p {
-             padding: 1rem;
-         }
-
          .push-down {
              margin-top: 4rem;
          }
@@ -125,80 +109,8 @@
 
         <div class="row">
             <div class="small-12 columns text-center">
-                <h2>Installation</h2>
-                <p>Run this in cmd.exe, as Administrator:</p>
-                <pre>msiexec.exe /i <a href="https://just-install.github.io/stable/just-install.msi">https://just-install.github.io/stable/just-install.msi</a></pre>
-                <p><small>(Maybe download a good ol' <a href="https://just-install.github.io/stable/just-install.exe">executable</a>?)</small></p>
-                <h3>Or...</h3>
-                <a class="button" href="customizer.html">Create Custom Installer</a>
+                <p>This project is no longer being maintained. We strongly suggest you to switch to <a href="https://learn.microsoft.com/en-us/windows/package-manager/winget/">Microsoft's winget</a>.</p>
             </div>
         </div>
-
-        <hr>
-
-        <div class="row">
-            <div class="small-12 columns text-center help-block">
-                <h2>What can we do?</h2>
-                <br>
-                <div class="row">
-                    <div class="small-6 columns text-right"><p>Install a package</p></div>
-                    <div class="small-6 columns text-left"><pre>just-install firefox</pre></div>
-                </div>
-                <div class="row">
-                    <div class="small-6 columns text-right"><p>List Available Packages</p></div>
-                    <div class="small-6 columns text-left"><pre>just-install list</pre></div>
-                </div>
-                <div class="row">
-                    <div class="small-6 columns text-right"><p>Install for specific architecture</p></div>
-                    <div class="small-6 columns text-left"><pre>just-install -a x86 go</pre></div>
-                </div>
-                <div class="row">
-                    <div class="small-6 columns text-right"><p>Help!</p></div>
-                    <div class="small-6 columns text-left"><pre>just-install --help</pre></div>
-                </div>
-            </div>
-        </div>
-
-        <br>
-        <hr>
-
-        <div class="row" ng-cloak ng-show="packages">
-            <div class="small-12 columns">
-                <h2 class="text-center">Which packages do we have?</h2>
-                <p>{{ packages.length }} packages and counting.</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th width="25%">Package</th>
-                            <th>Version</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="pkg in packages">
-                            <td>{{ pkg.name }}</td>
-                            <td>{{ pkg.version }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
-        <script>
-         angular.module('just-install', []).controller('JustInstallController', function ($http, $scope) {
-             $scope.packages = null;
-             $scope.registryVersion = -1;
-
-             $http.get('//just-install.github.io/registry/just-install-v4.json').success(function (data) {
-                 $scope.registryVersion = data.version;
-                 $scope.packages = Object.keys(data.packages).map(function (v) {
-                     return {
-                         name: v,
-                         version: data.packages[v].version
-                     }
-                 })
-             });
-         });
-        </script>
     </body>
 </html>
